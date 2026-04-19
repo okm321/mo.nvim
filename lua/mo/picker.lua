@@ -25,6 +25,7 @@ function M.pick(target)
   vim.notify("[mo] snacks.nvim, telescope.nvim, or fzf-lua is required for :MoPick", vim.log.levels.ERROR)
 end
 
+-- stylua: ignore
 local find_cmd = {
   "find", ".", "-type", "f",
   "(", "-name", "*.md", "-o", "-name", "*.mdx", ")",
@@ -39,14 +40,17 @@ function M.snacks_pick(target)
   Snacks.picker({
     title = "mo: Add Markdown files",
     finder = function(_, ctx)
-      return require("snacks.picker.source.proc").proc(ctx:opts({
-        cmd = find_cmd[1],
-        args = vim.list_slice(find_cmd, 2),
-        cwd = vim.fn.getcwd(),
-        transform = function(item)
-          item.file = item.text
-        end,
-      }), ctx)
+      return require("snacks.picker.source.proc").proc(
+        ctx:opts({
+          cmd = find_cmd[1],
+          args = vim.list_slice(find_cmd, 2),
+          cwd = vim.fn.getcwd(),
+          transform = function(item)
+            item.file = item.text
+          end,
+        }),
+        ctx
+      )
     end,
     format = function(item, _)
       local path = item.text or ""
