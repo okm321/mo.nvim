@@ -1,0 +1,163 @@
+*mo.txt*  Neovim integration for mo — a Markdown live-reload viewer
+
+==============================================================================
+CONTENTS                                                          *mo-contents*
+
+  1. Introduction ........................... |mo-introduction|
+  2. Requirements ........................... |mo-requirements|
+  3. Setup .................................. |mo-setup|
+  4. Configuration .......................... |mo-configuration|
+  5. Commands ............................... |mo-commands|
+  6. MoPick ................................. |mo-pick|
+  7. Keymap examples ........................ |mo-keymaps|
+  8. License ................................ |mo-license|
+
+==============================================================================
+1. INTRODUCTION                                               *mo-introduction*
+
+mo.nvim is a Neovim plugin that wraps |mo|, a Markdown viewer that opens
+`.md` files in a browser with live-reload.
+
+It lets you add files, manage target groups, and control the mo server
+without leaving Neovim. Multi-file selection is supported via snacks.nvim,
+telescope.nvim, or fzf-lua.
+
+Project: https://github.com/okm321/mo.nvim
+Upstream mo: https://github.com/k1LoW/mo
+
+==============================================================================
+2. REQUIREMENTS                                               *mo-requirements*
+
+- mo CLI (installed and available on $PATH)
+- Neovim >= 0.10
+- (optional) snacks.nvim, telescope.nvim, or fzf-lua for |:MoPick|
+
+==============================================================================
+3. SETUP                                                             *mo-setup*
+
+Using lazy.nvim: >lua
+    {
+      "okm321/mo.nvim",
+      ft = { "markdown" },
+      opts = {},
+    }
+<
+
+Or call |mo.setup()| manually: >lua
+    require("mo").setup({
+      port = 6275,
+      no_open = false,
+      auto_add = false,
+      target = nil,
+    })
+<
+
+==============================================================================
+4. CONFIGURATION                                             *mo-configuration*
+
+                                                                    *mo.setup()*
+require("mo").setup({opts})
+    Configure mo.nvim with the given options. Accepts a table with the
+    following fields:
+
+                                                                     *mo-config*
+    `port` (integer, default: 6275)
+        Port the mo server listens on.
+
+    `no_open` (boolean, default: false)
+        When true, mo will not open the browser automatically on add.
+
+    `auto_add` (boolean, default: false)
+        When true, Markdown buffers are added to mo automatically on
+        |BufEnter|.
+
+    `target` (string|nil, default: nil)
+        Default target group. When set, add operations without an
+        explicit target will go to this group.
+
+==============================================================================
+5. COMMANDS                                                       *mo-commands*
+
+                                                                       *:MoAdd*
+:MoAdd [{target}]
+    Add the current Markdown buffer to mo. If {target} is given, the
+    file is added to that group.
+
+                                                                    *:MoAddDir*
+:MoAddDir [{path}] [{target}]
+    Add all `*.md` / `*.mdx` files under {path} (recursively). If
+    {path} is omitted, the directory of the current buffer (or the
+    current working directory when no buffer file exists) is used.
+
+                                                                      *:MoPick*
+:MoPick [{target}]
+    Open a file picker to select Markdown files to add. See |mo-pick|.
+
+                                                                      *:MoDiff*
+:MoDiff [{target}]
+    Add Markdown files that have changed in the current git working
+    tree (staged, unstaged, and untracked). Requires the current
+    working directory to be inside a git repository.
+
+                                                                     *:MoWatch*
+:MoWatch [{patterns}...]
+    Watch glob patterns. Defaults to `**/*.md`. Use `-t {target}` to
+    route watched files to a specific target group. Example: >
+        :MoWatch **/*.md -t docs
+<
+
+                                                                    *:MoStatus*
+:MoStatus
+    Show the mo server status in a floating window. Press `q` to close.
+
+                                                                   *:MoRestart*
+:MoRestart
+    Restart the mo server.
+
+                                                                  *:MoShutdown*
+:MoShutdown
+    Shut down the mo server.
+
+                                                                     *:MoClear*
+:MoClear
+    Clear the mo session. Stops the server and removes all registered
+    files. Prompts for confirmation.
+
+==============================================================================
+6. MOPICK                                                             *mo-pick*
+
+|:MoPick| opens a file picker listing Markdown files in the current
+directory tree. It auto-detects installed pickers with this priority:
+
+    1. snacks.nvim
+    2. telescope.nvim
+    3. fzf-lua
+
+Default keys inside the picker:
+
+    <Tab>    Toggle selection on the current item
+    <CR>     Confirm — add selected files to mo
+    <C-a>    Select all (snacks.nvim and telescope.nvim only)
+
+Example: >
+    :MoPick           " add to default group
+    :MoPick design    " add to "design" group
+<
+
+==============================================================================
+7. KEYMAP EXAMPLES                                                 *mo-keymaps*
+>lua
+    vim.keymap.set("n", "<leader>mo", "<cmd>MoAdd<cr>",    { desc = "Add to mo" })
+    vim.keymap.set("n", "<leader>mp", "<cmd>MoPick<cr>",   { desc = "Pick files for mo" })
+    vim.keymap.set("n", "<leader>ms", "<cmd>MoStatus<cr>", { desc = "mo status" })
+<
+
+==============================================================================
+8. LICENSE                                                         *mo-license*
+
+MIT License. See the LICENSE file in the repository.
+
+This plugin wraps mo (https://github.com/k1LoW/mo) by Ken'ichiro Oyama,
+which is also MIT licensed.
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
