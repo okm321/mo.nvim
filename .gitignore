@@ -1,0 +1,19 @@
+# Lua
+*.luac
+
+# Editor
+.luarc.local.json
+tags
+tags.lock
+tags.temp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+luacov.*.out
+
+# Local environment
+.env
+.env.local
