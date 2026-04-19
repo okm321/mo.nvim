@@ -17,7 +17,7 @@ snacks.nvim / Telescope / fzf-lua による複数ファイル選択にも対応�
 
 ```lua
 {
-  "your-name/mo.nvim",
+  "okm321/mo.nvim",
   ft = { "markdown" },
   opts = {},
 }

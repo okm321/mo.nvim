@@ -16,7 +16,7 @@ Add files, manage groups, and control the mo server without leaving Neovim. Supp
 
 ```lua
 {
-  "your-name/mo.nvim",
+  "okm321/mo.nvim",
   ft = { "markdown" },
   opts = {},
 }
