@@ -71,4 +71,4 @@ vim.keymap.set("n", "<leader>ms", "<cmd>MoStatus<cr>", { desc = "mo status" })
 
 MIT — See [LICENSE](LICENSE)
 
-This plugin wraps [mo](https://github.com/k1LoW/mo) by Ken'ichiro Oyama, also licensed under MIT.
+This plugin wraps [mo](https://github.com/k1LoW/mo) also licensed under MIT.
