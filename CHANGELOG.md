@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-04-21
+
+### Changed
+
+- **Breaking:** `:MoDiff` を `:MoAddDiff` に改名。`:MoAdd` / `:MoAddDir`
+  と揃え、追加系コマンドであることを名前から分かるようにした。旧名
+  `:MoDiff` を使っている場合は keymap やスクリプトの更新が必要。
+- README のコマンド表に `:MoAddDiff` を追記。
+
 ## [0.1.1] - 2026-04-21
 
 ### Fixed
@@ -42,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `port` and `no_open` options mapped to the corresponding mo CLI flags.
 - `doc/mo.txt` (`:help mo.nvim`).
 
-[Unreleased]: https://github.com/okm321/mo.nvim/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/okm321/mo.nvim/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/okm321/mo.nvim/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/okm321/mo.nvim/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/okm321/mo.nvim/releases/tag/v0.1.0
