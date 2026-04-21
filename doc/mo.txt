@@ -93,8 +93,8 @@ require("mo").setup({opts})
 :MoPick [{target}]
     Open a file picker to select Markdown files to add. See |mo-pick|.
 
-                                                                      *:MoDiff*
-:MoDiff [{target}]
+                                                                   *:MoAddDiff*
+:MoAddDiff [{target}]
     Add Markdown files that have changed in the current git working
     tree (staged, unstaged, and untracked). Requires the current
     working directory to be inside a git repository.

@@ -40,6 +40,7 @@ require("mo").setup({
 |---------|------|
 | `:MoAdd [target]` | 現在のファイルを mo に追加（target でグループ指定） |
 | `:MoAddDir [path] [target]` | ディレクトリ内の Markdown を追加 |
+| `:MoAddDiff [target]` | git で変更された Markdown を追加（staged / unstaged / untracked） |
 | `:MoPick [target]` | ピッカーでファイルを選択して追加 |
 | `:MoStatus` | サーバー状態を float window で表示 |
 | `:MoWatch [patterns...]` | glob パターンで watch（`-t` でグループ指定可） |

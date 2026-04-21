@@ -39,6 +39,7 @@ require("mo").setup({
 |---------|-------------|
 | `:MoAdd [target]` | Add current file to mo (optional: target group) |
 | `:MoAddDir [path] [target]` | Add all Markdown files in a directory |
+| `:MoAddDiff [target]` | Add Markdown files changed in git (staged / unstaged / untracked) |
 | `:MoPick [target]` | Pick files to add via snacks.nvim / Telescope / fzf-lua |
 | `:MoStatus` | Show server status in a floating window |
 | `:MoWatch [patterns...]` | Watch glob patterns (e.g., `:MoWatch **/*.md -t docs`) |

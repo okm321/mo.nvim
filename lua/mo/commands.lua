@@ -166,7 +166,7 @@ function M.register()
     nargs = "*",
     desc = "Watch glob patterns (e.g., :MoWatch **/*.md -t docs)",
   })
-  vim.api.nvim_create_user_command("MoDiff", M.add_diff, {
+  vim.api.nvim_create_user_command("MoAddDiff", M.add_diff, {
     nargs = "?",
     desc = "Add changed Markdown files (git diff) to mo",
   })
