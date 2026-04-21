@@ -10,6 +10,7 @@ function M.run(args, opts)
   local stderr_chunks = {}
 
   vim.fn.jobstart(vim.list_extend({ "mo" }, args), {
+    stdin = "null",
     stdout_buffered = true,
     stderr_buffered = true,
     on_stdout = function(_, data)
@@ -107,23 +108,18 @@ function M.clear()
     if choice ~= "Yes" then
       return
     end
-    -- shutdown first, then clear (shutdown saves session, so clear must come after)
-    M.run({ "--shutdown", "--port", tostring(config.values.port) }, {
-      on_exit = function()
-        local job_id = vim.fn.jobstart({ "mo", "--clear", "--port", tostring(config.values.port) }, {
-          on_exit = function(_, code)
-            vim.schedule(function()
-              if code == 0 then
-                vim.notify("[mo] Session cleared", vim.log.levels.INFO)
-              else
-                vim.notify("[mo] Failed to clear session", vim.log.levels.ERROR)
-              end
-            end)
-          end,
-        })
-        vim.fn.chansend(job_id, "Y\n")
+    local job_id = vim.fn.jobstart({ "mo", "--clear", "--port", tostring(config.values.port) }, {
+      on_exit = function(_, code)
+        vim.schedule(function()
+          if code == 0 then
+            vim.notify("[mo] Session cleared", vim.log.levels.INFO)
+          else
+            vim.notify("[mo] Failed to clear session", vim.log.levels.ERROR)
+          end
+        end)
       end,
     })
+    vim.fn.chansend(job_id, "Y\n")
   end)
 end
 

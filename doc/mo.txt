@@ -28,7 +28,7 @@ Upstream mo: https://github.com/k1LoW/mo
 ==============================================================================
 2. REQUIREMENTS                                               *mo-requirements*
 
-- mo CLI (installed and available on $PATH)
+- mo CLI >= 1.3.0 (installed and available on $PATH)
 - Neovim >= 0.10
 - (optional) snacks.nvim, telescope.nvim, or fzf-lua for |:MoPick|
 

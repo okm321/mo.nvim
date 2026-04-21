@@ -6,7 +6,7 @@ Add files, manage groups, and control the mo server without leaving Neovim. Supp
 
 ## Requirements
 
-- [mo](https://github.com/k1LoW/mo) (installed and in PATH)
+- [mo](https://github.com/k1LoW/mo) >= 1.3.0 (installed and in PATH)
 - Neovim >= 0.10
 - (Optional) [snacks.nvim](https://github.com/folke/snacks.nvim), [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), or [fzf-lua](https://github.com/ibhagwan/fzf-lua) for `:MoPick`
 
